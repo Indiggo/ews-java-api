@@ -167,8 +167,10 @@ public class GetUserSettingsRequestTest extends BaseTest {
 
     // Test without expected Partnertoken
     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    EwsServiceXmlWriter writerService = new EwsServiceXmlWriter(exchangeServiceBaseMock, byteArrayOutputStream);
     getUserSettingsRequest.writeExtraCustomSoapHeadersToXml(
-        new EwsServiceXmlWriter(exchangeServiceBaseMock, byteArrayOutputStream));
+        writerService);
+    writerService.flush();
 
     // data should be added the same way as mentioned
     Assert.assertThat(byteArrayOutputStream.toByteArray(),

@@ -25,6 +25,7 @@ package microsoft.exchange.webservices.data.property.complex;
 
 import microsoft.exchange.webservices.base.BaseTest;
 import microsoft.exchange.webservices.data.core.EwsServiceXmlWriter;
+import microsoft.exchange.webservices.data.core.enumeration.misc.XmlNamespace;
 import microsoft.exchange.webservices.data.core.exception.service.local.ServiceLocalException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -150,11 +151,13 @@ public class UserConfigurationDictionaryTest extends BaseTest {
     // Mock up needed Classes
     OutputStream output = new ByteArrayOutputStream();
     EwsServiceXmlWriter testWriter = new EwsServiceXmlWriter(exchangeServiceBaseMock, output);
+    testWriter.writeStartElement(XmlNamespace.Types, "test");
 
     // Adding Test Values to the Object
     fillDictionaryWithValidEntries();
 
     // Write the Elements
     this.userConfigurationDictionary.writeElementsToXml(testWriter);
+    testWriter.writeEndElement();
   }
 }
