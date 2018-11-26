@@ -60,6 +60,7 @@ public class TimeWindowTest extends BaseTest {
       tw.setEndTime(just_before_midnight);
       tw.writeToXmlUnscopedDatesOnly(writer, XmlElementNames.Duration);
       writer.writeEndElement();
+      writer.flush();
 
       // read the test markup
       InputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
